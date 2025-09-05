@@ -6,7 +6,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
+  "type": "commonjs",
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.2.2",
     "@swc/cli": "^0.1.55",
