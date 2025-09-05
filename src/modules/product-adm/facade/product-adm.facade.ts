@@ -4,9 +4,9 @@ import {
   OutputAddProductDto,
 } from '../usecases/add-product/add-product.dto'
 import {
-  InputFindProductDto,
-  OutputFindProductDto,
-} from '../usecases/find-product/find-product.dto'
+  InputCheckStockDto,
+  OutputCheckStockDto,
+} from '../usecases/check-stock/check-stock.interface'
 import {
   InputAddProductFacadeDto,
   InputCheckStockProductFacadeDto,
@@ -17,8 +17,8 @@ import {
 export interface ProductAdmFacadeProps {
   addProductUseCase: UseCaseInterface<InputAddProductDto, OutputAddProductDto>
   checkProductStockUseCase: UseCaseInterface<
-    InputFindProductDto,
-    OutputFindProductDto
+    InputCheckStockDto,
+    OutputCheckStockDto
   >
 }
 
@@ -29,8 +29,8 @@ export class ProductAdmFacade implements ProductAdmFacadeInterface {
   >
 
   private _checkProductUseCase: UseCaseInterface<
-    InputFindProductDto,
-    OutputFindProductDto
+    InputCheckStockDto,
+    OutputCheckStockDto
   >
 
   constructor(props: ProductAdmFacadeProps) {
@@ -42,7 +42,9 @@ export class ProductAdmFacade implements ProductAdmFacadeInterface {
     await this._addProductUseCase.execute(input)
   }
 
-  checkStock: (
+  async checkStock(
     input: InputCheckStockProductFacadeDto,
-  ) => Promise<OutputCheckStockProductFacadeDto>
+  ): Promise<OutputCheckStockProductFacadeDto> {
+    return this._checkProductUseCase.execute({ productId: input.productId })
+  }
 }

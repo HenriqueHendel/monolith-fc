@@ -40,4 +40,23 @@ describe('Unit tests for ProductAdm facade', () => {
     expect(product.purchasePrice).toBe(100)
     expect(product.stock).toBe(10)
   })
+
+  it('should check a product stock', async () => {
+    await ProductModel.create({
+      id: '1',
+      name: 'Product',
+      description: 'Product description',
+      purchasePrice: 100,
+      stock: 10,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    })
+
+    const facade = ProductAdmFacadeFactory.create()
+
+    const product = await facade.checkStock({ productId: '1' })
+
+    expect(product.productId).toBe('1')
+    expect(product.stock).toBe(10)
+  })
 })
