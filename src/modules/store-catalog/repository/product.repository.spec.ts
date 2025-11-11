@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize-typescript'
-import { ProductModel } from './product.model'
+import { CatalogModel } from './product.model'
 import { ProductRepository } from './product.repository'
 
 describe('Product repository test', () => {
@@ -13,7 +13,7 @@ describe('Product repository test', () => {
       sync: { force: true },
     })
 
-    sequelize.addModels([ProductModel])
+    sequelize.addModels([CatalogModel])
     await sequelize.sync()
   })
 
@@ -22,7 +22,7 @@ describe('Product repository test', () => {
   })
 
   it('should find all products', async () => {
-    await ProductModel.bulkCreate([
+    await CatalogModel.bulkCreate([
       {
         id: '1',
         name: 'Product 1',
@@ -53,7 +53,7 @@ describe('Product repository test', () => {
   })
 
   it('should find one products', async () => {
-    await ProductModel.create({
+    await CatalogModel.create({
       id: '1',
       name: 'Product 1',
       description: 'Product 1 description',

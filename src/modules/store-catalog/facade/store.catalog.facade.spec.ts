@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize-typescript'
 import { StoreCatalogFacadeFactory } from '../factory/facade.factory'
-import { ProductModel } from '../repository/product.model'
+import { CatalogModel } from '../repository/product.model'
 
 describe('Test for Store Catalog Facade', () => {
   let sequelize: Sequelize
@@ -13,7 +13,7 @@ describe('Test for Store Catalog Facade', () => {
       sync: { force: true },
     })
 
-    sequelize.addModels([ProductModel])
+    sequelize.addModels([CatalogModel])
     await sequelize.sync()
   })
 
@@ -22,7 +22,7 @@ describe('Test for Store Catalog Facade', () => {
   })
 
   it('should find all products', async () => {
-    await ProductModel.bulkCreate([
+    await CatalogModel.bulkCreate([
       {
         id: '1',
         name: 'Product 1',
@@ -52,7 +52,7 @@ describe('Test for Store Catalog Facade', () => {
   })
 
   it('should find a product', async () => {
-    await ProductModel.create({
+    await CatalogModel.create({
       id: '1',
       name: 'Product 1',
       description: 'Product 1 description',

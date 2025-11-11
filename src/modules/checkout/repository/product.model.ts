@@ -1,14 +1,16 @@
 import { Column, Model, PrimaryKey, Table } from 'sequelize-typescript'
 
 @Table({
-  modelName: 'products-table',
-  tableName: 'products',
-  timestamps: false,
+  tableName: 'checkout-products',
+  timestamps: true,
 })
 export class ProductModel extends Model {
   @PrimaryKey
   @Column({ allowNull: false })
   declare id: string
+
+  @Column({ allowNull: false })
+  declare orderId: string
 
   @Column({ allowNull: false })
   declare name: string
@@ -17,14 +19,5 @@ export class ProductModel extends Model {
   declare description: string
 
   @Column({ allowNull: false })
-  declare purchasePrice: number
-
-  @Column({ allowNull: false })
-  declare stock: number
-
-  @Column({ allowNull: false })
-  declare createdAt: Date
-
-  @Column({ allowNull: false })
-  declare updatedAt: Date
+  declare salesPrice: number
 }

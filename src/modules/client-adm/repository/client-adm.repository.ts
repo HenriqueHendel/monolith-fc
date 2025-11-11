@@ -5,14 +5,18 @@ import { Id } from '../../@shared/domain/value-object/id.value-object'
 
 export class ClientAdmRepository implements ClientAdmRepositoryInterface {
   async addClient(client: Client): Promise<void> {
-    await ClientModel.create({
-      id: client.id.id,
-      name: client.name,
-      email: client.email,
-      address: client.address,
-      createdAt: client.createdAt,
-      updatedAt: client.updatedAt,
-    })
+    try {
+      await ClientModel.create({
+        id: client.id.id,
+        name: client.name,
+        email: client.email,
+        address: client.address,
+        createdAt: client.createdAt,
+        updatedAt: client.updatedAt,
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   async findClient(id: string): Promise<Client> {
